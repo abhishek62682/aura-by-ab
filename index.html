@@ -197,9 +197,9 @@
 
             <!-- Mobile hamburger -->
             <div id="openMenuBtn" class="md:hidden cursor-pointer flex flex-col gap-[6px] items-end shrink-0">
-              <span class="block w-7 h-[1.5px] bg-white"></span>
-              <span class="block w-7 h-[1.5px] bg-white"></span>
-              <span class="block w-7 h-[1.5px] bg-white"></span>
+              <span class="hamburger-line block w-7 h-[1.5px] bg-white"></span>
+              <span class="hamburger-line block w-7 h-[1.5px] bg-white"></span>
+              <span class="hamburger-line block w-7 h-[1.5px] bg-white"></span>
             </div>
           </div>
         </nav>
@@ -805,6 +805,7 @@
     <script>
       const mainNav = document.getElementById("mainNav");
       mainNav.style.transition = "transform 0.4s ease, background-color 0.3s ease, box-shadow 0.3s ease";
+      const hamburgerLines = mainNav.querySelectorAll(".hamburger-line");
 
       let lastScrollY = window.scrollY;
       const scrollThreshold = 8; // ignore tiny jitter
@@ -819,7 +820,8 @@
           mainNav.style.webkitBackdropFilter = "blur(12px)";
           mainNav.style.boxShadow = "0 6px 20px rgba(0, 0, 0, 0.06)";
           mainNav.style.color = "#141414"; // dark text on white bar
-          
+          hamburgerLines.forEach((line) => (line.style.backgroundColor = "#141414"));
+
         } else {
           mainNav.style.backgroundColor = "";
           mainNav.style.backdropFilter = "";
@@ -827,6 +829,7 @@
           mainNav.style.boxShadow = "";
 
           mainNav.style.color = ""; // back to white over the dark hero
+          hamburgerLines.forEach((line) => (line.style.backgroundColor = ""));
         }
 
         // Hide on scroll down, show on scroll up
